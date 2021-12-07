@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BookHistory } from './BookHistory';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BookHistory />
+    <BrowserRouter>
+      <BookHistory />
+    </BrowserRouter>  
   </React.StrictMode>,
   document.getElementById('root')
 );
