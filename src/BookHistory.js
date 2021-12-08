@@ -8,10 +8,11 @@ export const BookHistory = () => (
 <>
     <Route
       render={() => {
-        if (localStorage.getItem("honey_customer")) {
+        if (localStorage.getItem("bookHistory_user")) {
           return (
             <>
               <NavBar />
+              <h1>bookHistory</h1>
               <ApplicationViews />
             </>
           );

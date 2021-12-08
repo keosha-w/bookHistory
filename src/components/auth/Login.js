@@ -47,6 +47,13 @@ export const Login = () => {
                             required autoFocus />
                     </fieldset>
                     <fieldset>
+                    <label htmlFor="inputPassword"> Password </label>
+                        <input type="password"
+                            className="form-control"
+                            placeholder="password"
+                            required autoFocus />
+                    </fieldset>
+                    <fieldset>
                         <button type="submit">
                             Sign in
                         </button>
