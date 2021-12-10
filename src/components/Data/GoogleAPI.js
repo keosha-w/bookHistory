@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useEffect } from "react/cjs/react.development"
 import { useHistory } from "react-router"
 import { bookList } from "../books/BookList"
+import { SearchResults } from "./Search"
 
 export const BookData = () => {
     const [booksInData, updateBooksInData] = useState([])
@@ -89,31 +90,34 @@ export const BookData = () => {
                     }
                 }></input>
                 <button onClick={fetchSearch}>Submit</button>
+                {
+                    <SearchResults bookData={bookData} saveBook={saveBook} saveToTBR={saveToTBR} />
+                }
             </div>
-            <h3>Results</h3>
-            { bookData
-                ?
-                    bookData.map(
-                        (bookObj) => {
-                            return (
-                                <div>
-                                    <p key={bookObj.id} id={bookObj.id}>{bookObj.volumeInfo.title} </p><button onClick={
-                                        (event) => {
-                                            saveBook(bookObj)
-                                        } 
-                                    }>BookHistory</button> <button onClick={
-                                        (event) => {
-                                            saveBook(bookObj)
-                                            .then(() => {
-                                                saveToTBR(bookObj)
-                                            })
-                                        }
-                                    }>TBR</button>
-                                </div> )
-                    }
-                )
-                : ""
-            }
         </>
     )
 }
+
+// { bookData
+//     ?
+//         bookData.map(
+//             (bookObj) => {
+//                 return (
+//                     <div>
+//                         <p key={bookObj.id} id={bookObj.id}>{bookObj.volumeInfo.title} </p><button onClick={
+//                             (event) => {
+//                                 saveBook(bookObj)
+//                             } 
+//                         }>BookHistory</button> <button onClick={
+//                             (event) => {
+//                                 saveBook(bookObj)
+//                                 .then(() => {
+//                                     saveToTBR(bookObj)
+//                                 })
+//                             }
+//                         }>TBR</button>
+//                     </div> )
+//         }
+//     )
+//     : ""
+// }
