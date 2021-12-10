@@ -4,6 +4,7 @@ import { useEffect } from "react/cjs/react.development"
 import { useHistory } from "react-router"
 import { bookList } from "../books/BookList"
 import { SearchResults } from "./Search"
+import { BookForm } from "../books/BookForm"
 
 export const BookData = () => {
     const [booksInData, updateBooksInData] = useState([])
@@ -11,7 +12,7 @@ export const BookData = () => {
     const [search, setSearch] = useState({
         title : ""
     })
-
+    const [selectedBook, updateSelectedBook] = useState({})
     
 
     const history = useHistory()
@@ -53,6 +54,9 @@ export const BookData = () => {
             body: JSON.stringify(newBook)
         })
             .then(() => {
+                updateSelectedBook(newBook)
+            })
+            .then(() => {
                 history.push("/myBH")
             })
     }
@@ -91,7 +95,7 @@ export const BookData = () => {
                 }></input>
                 <button onClick={fetchSearch}>Submit</button>
                 {
-                    <SearchResults bookData={bookData} saveBook={saveBook} saveToTBR={saveToTBR} />
+                    <SearchResults bookData={bookData} saveBook={saveBook} saveToTBR={saveToTBR} selectedBook={selectedBook}/>
                 }
             </div>
         </>

@@ -3,7 +3,6 @@ export const SearchResults = ({bookData, saveBook, saveToTBR}) => {
 
     return(
         <>
-        <h3>Results</h3>
             {
                     bookData.map(
                         (bookObj) => {
