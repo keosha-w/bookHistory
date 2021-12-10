@@ -41,7 +41,7 @@ export const BookData = () => {
         const newBook = {
             name: bookObj.volumeInfo.title, 
             author: findAuthor, 
-            description: bookObj.searchInfo.textSnippet,
+            description: bookObj.searchInfo?.textSnippet,
             apiBookId: bookObj.id
         }
 
@@ -55,9 +55,6 @@ export const BookData = () => {
         })
             .then(() => {
                 updateSelectedBook(newBook)
-            })
-            .then(() => {
-                history.push("/myBH")
             })
     }
 
@@ -94,34 +91,12 @@ export const BookData = () => {
                     }
                 }></input>
                 <button onClick={fetchSearch}>Submit</button>
-                {
-                    <SearchResults bookData={bookData} saveBook={saveBook} saveToTBR={saveToTBR} selectedBook={selectedBook}/>
+                { selectedBook.name
+                    ? <BookForm updateSelectedBook={updateSelectedBook} booksArray={booksInData} selectedBook={selectedBook}/>
+                    :<SearchResults bookData={bookData} saveBook={saveBook} saveToTBR={saveToTBR} selectedBook={selectedBook}/>
                 }
             </div>
         </>
     )
 }
 
-// { bookData
-//     ?
-//         bookData.map(
-//             (bookObj) => {
-//                 return (
-//                     <div>
-//                         <p key={bookObj.id} id={bookObj.id}>{bookObj.volumeInfo.title} </p><button onClick={
-//                             (event) => {
-//                                 saveBook(bookObj)
-//                             } 
-//                         }>BookHistory</button> <button onClick={
-//                             (event) => {
-//                                 saveBook(bookObj)
-//                                 .then(() => {
-//                                     saveToTBR(bookObj)
-//                                 })
-//                             }
-//                         }>TBR</button>
-//                     </div> )
-//         }
-//     )
-//     : ""
-// }

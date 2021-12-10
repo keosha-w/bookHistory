@@ -18,6 +18,9 @@ export const ApplicationViews = () => {
             <Route path="/myBH">
             <BookList />
             </Route>
+            <Route path="/form">
+            <BookForm />
+            </Route>
             
         </>
     )
