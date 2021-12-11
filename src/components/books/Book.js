@@ -1,20 +1,52 @@
+import { useEffect } from "react"
+import { useHistory, useParams } from "react-router"
+import { useState } from "react/cjs/react.development"
 import { BookList } from "./BookList"
 
-export default (book) => {
+export default ({book}) => {
+    const history = useHistory()
+    const { bookId } = useParams()
+    const [details, setDetails] = useState(false)
+    const [currentBook, setCurrentBook] = useState({})
     
 
+    useEffect(
+        () => {
+            fetch(`http://localhost:8088/books/${bookId}`)
+                .then(res => res.json())
+                .then((book) => {
+                    setCurrentBook(book)
+                })
+        }, []
+        )
+
+    useEffect(() => {
+        if (bookId) {
+            setDetails(true)
+        }
+    }, [])
+
+   
+
+    
+    const deleteBook = () => {
+        fetch(`http://localhost:8088/books${bookId}`, {
+            method: "DELETE"
+        })
+        .then(res => res.json())
+        .then(() => {
+            history.pushState("/myBH")
+        })
+    }
 
     return(
         <>
-        <img></img>
-        <h3>Book Title</h3>
-        <h4>By Author Name</h4>
-        <p>Description</p>
-        <p>Date Started</p>
-        <p>Date Completed</p>
-        <p>Entry</p>
-        <button>Edit</button>
-        <button>Delete</button>
+            { details
+
+                ? <h4>{currentBook?.name} by {currentBook?.author}</h4>
+                : <h4>{book?.name} by {book?.author}</h4>
+            }
         </>
     )
 }
+
