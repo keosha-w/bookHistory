@@ -49,7 +49,7 @@ export default ({book}) => {
                 <button>Edit</button>
                 <button onClick={deleteBook}>Delete</button>
                 </>
-                : <h4>{book?.name} by {book?.author}</h4>
+                : <h4>{book?.book.name} by {book?.book.author}</h4>
             }
         </>
     )

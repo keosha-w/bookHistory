@@ -9,7 +9,7 @@ export const BookList = () => {
 
     useEffect(
         () => {
-            fetch(`http://localhost:8088/books`)
+            fetch(`http://localhost:8088/history?_expand=book`)
                 .then(res => res.json())
                 .then((booksArray) => {
                     setBooks(booksArray)
@@ -17,10 +17,12 @@ export const BookList = () => {
         }, []
         )
 
+    const foundUsersHistory = books.filter((book) => book.userId === parseInt(localStorage.getItem("bookHistory_user")))
+ 
     return(
         <>
             {
-                books.map((book) => <Link to={`/myBH/book${book.id}`}><Book  key={book.id} book={book}/></Link>)
+                foundUsersHistory.map((book) => <Link to={`/myBH/book${book.id}`}><Book  key={book.id} book={book}/></Link>)
             }
         </>
     )

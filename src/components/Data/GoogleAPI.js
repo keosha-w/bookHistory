@@ -7,12 +7,12 @@ import { SearchResults } from "./Search"
 import { BookForm } from "../books/BookForm"
 
 export const BookData = () => {
-    const [booksInData, updateBooksInData] = useState([])
-    const [bookData, setBookData] = useState([])
-    const [search, setSearch] = useState({
+    const [booksInData, updateBooksInData] = useState([]) // these are the books in my database
+    const [bookData, setBookData] = useState([]) // search results from the GoogleAPI
+    const [search, setSearch] = useState({ // title of the book that the user has selected in search results
         title : ""
     })
-    const [selectedBook, updateSelectedBook] = useState({})
+    const [selectedBook, updateSelectedBook] = useState({}) // book object holding all the book information that the user selected
     
 
     const history = useHistory()
