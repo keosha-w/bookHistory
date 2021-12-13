@@ -4,6 +4,7 @@ import { Route } from "react-router-dom"
 import Book from "./components/books/Book"
 import { BookForm } from "./components/books/BookForm"
 import { BookList } from "./components/books/BookList"
+import { EditBook } from "./components/books/EditBook"
 import { BookData, DataFromAPI } from "./components/Data/GoogleAPI"
 import { UsersList } from "./components/users/Users"
 
@@ -19,8 +20,11 @@ export const ApplicationViews = () => {
             <Route exact path="/myBH">
             <BookList />
             </Route>
-            <Route path="/myBH/book:bookId(\d+)">
+            <Route exact path="/myBH/book:bookId(\d+)">
             <Book />
+            </Route>
+            <Route exact path="/myBH/book/:edit:bookId(\d+)">
+            <EditBook />
             </Route>
             <Route path="/form">
             <BookForm />

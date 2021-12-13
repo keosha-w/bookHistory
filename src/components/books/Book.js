@@ -12,13 +12,17 @@ export default ({book}) => {
 
     useEffect(
         () => {
+            fetchBooks()
+        }, []
+        )
+
+        const fetchBooks = () => {
             fetch(`http://localhost:8088/books/${bookId}`)
                 .then(res => res.json())
                 .then((book) => {
                     setCurrentBook(book)
                 })
-        }, []
-        )
+        }
 
     useEffect(() => {
         if (bookId) {
@@ -27,7 +31,16 @@ export default ({book}) => {
     }, [])
 
    
-
+    const updateBook = (book) => {
+        return fetch(`http://localhost:8088/books/${bookId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(book)
+        })
+        .then(fetchBooks())
+    }
     
     const deleteBook = () => {
         fetch(`http://localhost:8088/history/${bookId}`, {
@@ -46,7 +59,9 @@ export default ({book}) => {
 
                 ? <><h4>{currentBook?.name} by {currentBook?.author}</h4>
                 <p>{currentBook.description}</p>
-                <button>Edit</button>
+                <button onClick={() => {
+                    history.push(`/myBH/book/edit${bookId}`)}
+                }>Edit</button>
                 <button onClick={deleteBook}>Delete</button>
                 </>
                 : <h4>{book?.book.name} by {book?.book.author}</h4>

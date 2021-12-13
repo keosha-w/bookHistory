@@ -93,7 +93,7 @@ export const BookData = () => {
                 <button onClick={fetchSearch}>Submit</button>
                 { selectedBook.name
                     ? <BookForm updateSelectedBook={updateSelectedBook} booksArray={booksInData} selectedBook={selectedBook}/>
-                    :<SearchResults bookData={bookData} saveBook={saveBook} saveToTBR={saveToTBR} selectedBook={selectedBook}/>
+                    :<SearchResults key={search.title} bookData={bookData} saveBook={saveBook} saveToTBR={saveToTBR} selectedBook={selectedBook}/>
                 }
             </div>
         </>
