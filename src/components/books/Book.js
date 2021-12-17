@@ -1,20 +1,17 @@
+import "./book.css"
 import { useEffect } from "react"
 import { useHistory, useParams } from "react-router"
 import { useState } from "react/cjs/react.development"
 import { BookList } from "./BookList"
 
+
+//Responsibility - Single book view. Whenever a single book is rendered to the page this component handles the data. 
 export default ({book}) => {
     const history = useHistory()
     const { bookId } = useParams()
-    const [details, setDetails] = useState(false)
+    const [details, setDetails] = useState(false) //boolean value that changes depending on if details page is rendering or not. 
     const [currentBook, setCurrentBook] = useState({})
     
-
-    useEffect(
-        () => {
-            fetchBooks()
-        }, []
-        )
 
         const fetchBooks = () => {
             fetch(`http://localhost:8088/books/${bookId}`)
@@ -27,22 +24,13 @@ export default ({book}) => {
     useEffect(() => {
         if (bookId) {
             setDetails(true)
+            fetchBooks()
         }
     }, [])
 
    
-    const updateBook = (book) => {
-        return fetch(`http://localhost:8088/books/${bookId}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(book)
-        })
-        .then(fetchBooks())
-    }
     
-    const deleteBook = () => {
+    const deleteBook = () => { //delete book functionality which deletes the book from the user's history. 
         fetch(`http://localhost:8088/history/${bookId}`, {
             method: "DELETE"
         })

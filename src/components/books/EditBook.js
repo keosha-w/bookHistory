@@ -2,6 +2,9 @@ import { useEffect } from "react"
 import { useHistory, useParams } from "react-router"
 import { useState } from "react/cjs/react.development"
 
+//Responsibility - Edit BookHistory. This component handles the edit functionality
+
+
 export const EditBook = () => {
     const history = useHistory()
     const [currentBook, setCurrentBook] = useState({})
@@ -56,15 +59,10 @@ export const EditBook = () => {
     return (
         <form className="bookToHistory__Form">
             <h2>Edit this bookHistory</h2>
-            <div>
-                <p>Date Started: {currentBook?.dateStarted} </p>
-                <p>Date Completed:</p>
-                <p>Entry: </p>
-                <p>Marked for re-read: </p>
-            </div>
             <div className="form-group">
                 <label htmlFor="dateStarted">Date Started </label>
                 <input
+                value={currentBook.dateStarted}
                     type="date"
                     required
                     autoFocus
@@ -83,6 +81,7 @@ export const EditBook = () => {
             <div className="form-group">
                 <label htmlFor="dateFinished">Date Completed</label>
                 <input
+                value={currentBook.dateCompleted}
                     type="date"
                     required
                     className="form-control"
@@ -101,6 +100,7 @@ export const EditBook = () => {
             <div className="form-group">
                 <label htmlFor="dateFinished">Entry</label>
                 <textarea
+                value={currentBook.entry}
                     type="text"
                     required
                     className="form-control"
@@ -119,6 +119,7 @@ export const EditBook = () => {
             <div className="form-group">
                 <label htmlFor="re-read">Mark for re-read?</label>
                 <input
+                
                     type="checkbox"
                     className="form-control"
                     id="re-read"

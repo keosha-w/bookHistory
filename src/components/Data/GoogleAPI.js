@@ -2,9 +2,11 @@ import  apiSettings  from "./apiSettings"
 import { useState } from "react"
 import { useEffect } from "react/cjs/react.development"
 import { useHistory } from "react-router"
-import { bookList } from "../books/BookList"
 import { SearchResults } from "./Search"
 import { BookForm } from "../books/BookForm"
+
+//Responsibility - DataAccess. This component handles fetching data from the API and creating a bookObject in my database with that information. 
+
 
 export const BookData = () => {
     const [booksInData, updateBooksInData] = useState([]) // these are the books in my database
@@ -24,9 +26,9 @@ export const BookData = () => {
             .then((booksArray) => {
                 updateBooksInData(booksArray)
             })
-        },[]
+        },[bookData]
     )
-    const fetchSearch = () => {
+    const fetchSearch = () => { ///GET call to the API with the user's search
         fetch(`${apiSettings.apiURL}${search.title.replaceAll(" ","+")}${apiSettings.apiKEY}`)
                 .then(response => response.json())
                 .then((data) => {
@@ -35,7 +37,7 @@ export const BookData = () => {
                 )
     }
 
-    const saveBook = (bookObj) => {
+    const saveBook = (bookObj) => { //This function creates a book object in my api with the information pulled from GoogleBooks Api. 
         const findAuthor = bookObj.volumeInfo.authors.map((author) => {return author})
         
         const newBook = {
@@ -58,11 +60,9 @@ export const BookData = () => {
             })
     }
 
-    const saveToTBR = (bookObj) => {
-        const findBook = booksInData.find((book) => {
-            if (book.apiBookId === bookObj.id) {
-                return book.id
-            }})
+    const saveToTBR = (bookObj) => { //this is not completely functional - still working on this Stretch goal. 
+        const findBook = booksInData.find((book) => book.apiBookId === bookObj.id )
+        
         const bookTBR = {
             bookId: findBook.id,
             userId: parseInt(localStorage.getItem("bookHistory_user"))

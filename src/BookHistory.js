@@ -1,3 +1,4 @@
+import "./bookHistory.css"
 import { Redirect, Route } from "react-router"
 import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./components/nav/NavBar"

@@ -1,7 +1,9 @@
+import "./bookForm.css"
 import { useEffect } from "react"
 import { useHistory } from "react-router"
 import { useState } from "react/cjs/react.development"
 
+//Responsibility - Book History. This component allows the user to submit input and create a bookHistory Object. 
 
 export const BookForm = ({updateSelectedBook, selectedBook}) => {
     const [books, setBooks] = useState()
