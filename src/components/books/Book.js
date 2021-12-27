@@ -11,14 +11,23 @@ export default ({book}) => {
     const { bookId } = useParams()
     const [details, setDetails] = useState(false) //boolean value that changes depending on if details page is rendering or not. 
     const [currentBook, setCurrentBook] = useState({})
+    const [bookHistory, setBookHistory] = useState([])
+    const [currentHistory, setCurrentHistory] = useState({})
     
 
         const fetchBooks = () => {
-            fetch(`http://localhost:8088/books/${bookId}`)
+            fetch(`http://localhost:8088/history/${bookId}/?_expand=book`)
                 .then(res => res.json())
                 .then((book) => {
                     setCurrentBook(book)
                 })
+                .then(fetch(`http://localhost:8088/history`)
+                .then(res => res.json())
+                .then((history) => {
+                setBookHistory(history)
+            })
+                )
+    
         }
 
     useEffect(() => {
@@ -28,6 +37,11 @@ export default ({book}) => {
         }
     }, [])
 
+
+
+    useEffect(() => {
+        
+    }, [])
    
     
     const deleteBook = () => { //delete book functionality which deletes the book from the user's history. 
@@ -45,14 +59,22 @@ export default ({book}) => {
             <h3></h3>
             { details
 
-                ? <><h4>{currentBook?.name} by {currentBook?.author}</h4>
-                <p>{currentBook.description}</p>
-                <button onClick={() => {
-                    history.push(`/myBH/book/edit${bookId}`)}
-                }>Edit</button>
-                <button onClick={deleteBook}>Delete</button>
+                ? <><div className="bookDetails">
+                    <h4 className="bookDetails__TitleAuthor">{currentBook?.book?.name} by {currentBook?.book?.author}</h4>
+                    <p className="bookDetails__Description">{currentBook?.book?.description}</p>
+                    <h4>Date Started:</h4><p>{currentBook.dateStarted}</p>
+                    <h4>Date Completed:</h4><p>{currentBook.dateCompleted}</p>
+                    <h4>myEntry:</h4><p>{currentBook.entry}</p>
+                    <h4>Marked for re-read?</h4><p>{currentBook.reRead}</p>
+                    <button className="bookDetails__Button" onClick={() => {
+                        history.push(`/myBH/book/edit${bookId}`)}
+                    }>Edit</button>
+                    <button className="bookDetails__Button" onClick={deleteBook}>Delete</button>
+                </div>
                 </>
-                : <h4>{book?.book.name} by {book?.book.author}</h4>
+                : <div className="book">
+                    <h4>{book?.book.name} by {book?.book.author}</h4>
+                </div>
             }
         </>
     )

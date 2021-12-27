@@ -81,8 +81,8 @@ export const BookData = () => {
 
     return(
         <>
-            <h3>Search for a book</h3>
-            <div>
+            <h3 className="Search">Search for a book</h3>
+            <div className="Search">
                 <input onChange={
                     (event) => {
                         const copy = {...search}
@@ -90,7 +90,7 @@ export const BookData = () => {
                         setSearch(copy)
                     }
                 }></input>
-                <button onClick={fetchSearch}>Submit</button>
+                <button className="bookDetails__Button" onClick={fetchSearch}>Submit</button>
                 { selectedBook.name
                     ? <BookForm updateSelectedBook={updateSelectedBook} booksArray={booksInData} selectedBook={selectedBook}/>
                     :<SearchResults key={search.title} bookData={bookData} saveBook={saveBook} saveToTBR={saveToTBR} selectedBook={selectedBook}/>

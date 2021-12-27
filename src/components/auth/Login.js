@@ -20,7 +20,7 @@ export const Login = () => {
             .then(exists => {
                 if (exists) {
                     localStorage.setItem("bookHistory_user", exists.id)
-                    history.push("/")
+                    history.push("/myBH")
                 } else {
                     existDialog.current.showModal()
                 }
@@ -36,7 +36,7 @@ export const Login = () => {
 
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>BookHistory</h1>
+                    <h1>mybookHistory</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>

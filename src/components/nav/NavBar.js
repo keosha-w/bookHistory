@@ -6,7 +6,7 @@ import "./NavBar.css"
 export const NavBar = (props) => {
     return (
         <>
-            <div className="navbar">
+            <div className="navbar_Div">
                 <ul className="navbar">
                     <li className="navbar__item active">
                         <Link className="navbar__link" to="/users">Users</Link>

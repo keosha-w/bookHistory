@@ -1,9 +1,10 @@
-.navbar {
+.navbar_Div {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: left;
-    border-bottom: 1px black;
+    justify-content: center;
+    border-bottom: black solid 1px;
 }
+
 
 .navbar__item {
     flex-basis: 20%;

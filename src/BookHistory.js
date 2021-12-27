@@ -13,7 +13,7 @@ export const BookHistory = () => (
           return (
             <>
               <NavBar />
-              <h1>bookHistory</h1>
+              <h1>mybookHistory</h1>
               <ApplicationViews />
             </>
           );
