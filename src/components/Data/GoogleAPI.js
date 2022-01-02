@@ -15,7 +15,7 @@ export const BookData = () => {
         title : ""
     })
     const [selectedBook, updateSelectedBook] = useState({}) // book object holding all the book information that the user selected
-    
+    const [tbrSelected, setTbrSelected] = useState(false)
 
     const history = useHistory()
 
@@ -28,6 +28,14 @@ export const BookData = () => {
             })
         },[bookData]
     )
+
+    useEffect(() => {
+        if (tbrSelected === true) {
+            history.push("/myTBR")
+        }
+    }, [])
+
+
     const fetchSearch = () => { ///GET call to the API with the user's search
         fetch(`${apiSettings.apiURL}${search.title.replaceAll(" ","+")}${apiSettings.apiKEY}`)
                 .then(response => response.json())
@@ -43,8 +51,9 @@ export const BookData = () => {
         const newBook = {
             name: bookObj.volumeInfo.title, 
             author: findAuthor, 
-            description: bookObj.searchInfo?.textSnippet,
-            apiBookId: bookObj.id
+            description: bookObj.volumeInfo.description,
+            apiBookId: bookObj.id,
+            image: bookObj.volumeInfo.imageLinks.thumbnail
         }
 
 
@@ -61,7 +70,8 @@ export const BookData = () => {
     }
 
     const saveToTBR = (bookObj) => { //this is not completely functional - still working on this Stretch goal. 
-        const findBook = booksInData.find((book) => book.apiBookId === bookObj.id )
+        setTbrSelected(true)
+        const findBook = booksInData.find((book) => book.apiBookId === bookObj.id)
         
         const bookTBR = {
             bookId: findBook.id,
@@ -75,9 +85,11 @@ export const BookData = () => {
             body: JSON.stringify(bookTBR)
         })
             .then(() => {
-                history.push("/TBR")
+                history.push("/myTBR")
             })
     }
+
+    
 
     return(
         <>
@@ -91,7 +103,7 @@ export const BookData = () => {
                     }
                 }></input>
                 <button className="bookDetails__Button" onClick={fetchSearch}>Submit</button>
-                { selectedBook.name
+                { selectedBook.name 
                     ? <BookForm updateSelectedBook={updateSelectedBook} booksArray={booksInData} selectedBook={selectedBook}/>
                     :<SearchResults key={search.title} bookData={bookData} saveBook={saveBook} saveToTBR={saveToTBR} selectedBook={selectedBook}/>
                 }

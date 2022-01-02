@@ -1,6 +1,7 @@
+import { useHistory } from "react-router"
 import "./search.css"
 export const SearchResults = ({bookData, saveBook, saveToTBR}) => {
-
+    const history = useHistory()
 
     return(
         <>
@@ -17,6 +18,7 @@ export const SearchResults = ({bookData, saveBook, saveToTBR}) => {
                                         (event) => {
                                             saveBook(bookObj)
                                             .then(() => {
+                                                history.push("/myTBR")
                                                 saveToTBR(bookObj)
                                             })
                                         }

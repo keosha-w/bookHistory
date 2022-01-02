@@ -60,6 +60,7 @@ export default ({book}) => {
             { details
 
                 ? <><div className="bookDetails">
+                    <img className="bookDetails__Image"src={currentBook?.book?.image}></img>
                     <h4 className="bookDetails__TitleAuthor">{currentBook?.book?.name} by {currentBook?.book?.author}</h4>
                     <p className="bookDetails__Description">{currentBook?.book?.description}</p>
                     <h4>Date Started:</h4><p>{currentBook.dateStarted}</p>
@@ -73,7 +74,7 @@ export default ({book}) => {
                 </div>
                 </>
                 : <div className="book">
-                    <h4>{book?.book.name} by {book?.book.author}</h4>
+                    <h4>{book?.book?.name} by {book?.book?.author}</h4>
                 </div>
             }
         </>

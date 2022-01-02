@@ -24,7 +24,7 @@ export const NavBar = (props) => {
                 </ul>
                 <ul className="navbar">
                     <li className="navbar__item active">
-                        <Link className="navbar__link" to="/TBR">TBR</Link>
+                        <Link className="navbar__link" to="/myTBR">TBR</Link>
                     </li>
                 </ul>
                 <ul className="navbar">
