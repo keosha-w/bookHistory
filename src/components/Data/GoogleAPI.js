@@ -4,6 +4,7 @@ import { useEffect } from "react/cjs/react.development"
 import { useHistory } from "react-router"
 import { SearchResults } from "./Search"
 import { BookForm } from "../books/BookForm"
+import  "./googleApi.css"
 
 //Responsibility - DataAccess. This component handles fetching data from the API and creating a bookObject in my database with that information. 
 
@@ -71,7 +72,8 @@ export const BookData = () => {
 
     const saveToTBR = (bookObj) => { //this is not completely functional - still working on this Stretch goal. 
         setTbrSelected(true)
-        const findBook = booksInData.find((book) => book.apiBookId === bookObj.id)
+        const findBook = booksInData.find(book => book.apiBookId === bookObj.id)
+        
         
         const bookTBR = {
             bookId: findBook.id,
@@ -93,16 +95,18 @@ export const BookData = () => {
 
     return(
         <>
-            <h3 className="Search">Search for a book</h3>
-            <div className="Search">
-                <input onChange={
-                    (event) => {
-                        const copy = {...search}
-                        copy.title = event.target.value
-                        setSearch(copy)
-                    }
-                }></input>
-                <button className="bookDetails__Button" onClick={fetchSearch}>Submit</button>
+            <div className="SearchDiv">
+                <h3 className="Search">Search for a book</h3>
+                <div className="Search">
+                    <input onChange={
+                        (event) => {
+                            const copy = {...search}
+                            copy.title = event.target.value
+                            setSearch(copy)
+                        }
+                    }></input>
+                    <button className="bookDetails__Button" onClick={fetchSearch}>Submit</button>
+            </div>
                 { selectedBook.name 
                     ? <BookForm updateSelectedBook={updateSelectedBook} booksArray={booksInData} selectedBook={selectedBook}/>
                     :<SearchResults key={search.title} bookData={bookData} saveBook={saveBook} saveToTBR={saveToTBR} selectedBook={selectedBook}/>

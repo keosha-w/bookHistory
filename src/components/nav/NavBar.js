@@ -9,11 +9,6 @@ export const NavBar = (props) => {
             <div className="navbar_Div">
                 <ul className="navbar">
                     <li className="navbar__item active">
-                        <Link className="navbar__link" to="/users">Users</Link>
-                    </li>
-                </ul>
-                <ul className="navbar">
-                    <li className="navbar__item active">
                         <Link className="navbar__link" to="/myBH">myBookHistory</Link>
                     </li>
                 </ul>
@@ -28,12 +23,7 @@ export const NavBar = (props) => {
                     </li>
                 </ul>
                 <ul className="navbar">
-                    <li className="navbar__item active">
-                        <Link className="navbar__link" to="/feed">Feed</Link>
-                    </li>
-                </ul>
-                <ul className="navbar">
-                    <li className="navbar__item active">
+                    <li className="navbar__logout active">
                         <Link className="navbar__link" to="/feed" onClick={
                             () => {
                                 localStorage.removeItem("bookHistory_user")

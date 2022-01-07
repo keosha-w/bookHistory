@@ -11,6 +11,7 @@ color:#000000;
 background-color:#CCCCCC;
 text-align:center;
 position:relative;
+margin: 1em;
 }
 
 .bookDetails__Button8:hover {
@@ -22,5 +23,18 @@ position:relative;
 }
 
 .bookDetails {
-    
+    background-color: #B497D6;
+    width: 627px;
+    flex-wrap: wrap;
+    margin: 1em
+}
+.bookDetailsDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.bookDetails__Image {
+    height: 193px;
+    width: 128px;
+    margin-top: 0.5em;
 }

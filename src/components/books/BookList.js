@@ -31,7 +31,7 @@ export const BookList = () => {
     return(
         <>
             {
-                foundUsersHistory.map((book) => <Link to={`/myBH/book${book.id}`}><Book  key={book.id} book={book}/></Link>)
+                foundUsersHistory.map((book) => <Link to={`/myBH/book${book.id}`}><Book className="book__Item" key={book.id} book={book}/></Link>)
             }
         </>
     )

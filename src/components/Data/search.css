@@ -1,4 +1,8 @@
-.Search {
-    margin: 10px;
-    padding-left: 20px;
+
+
+.search__Results {
+    display: flex;
+    border: dotted 0.5px #B497D6;
+    margin: 0.5em;
+    padding: 0.5em;
 }

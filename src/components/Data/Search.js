@@ -9,7 +9,7 @@ export const SearchResults = ({bookData, saveBook, saveToTBR}) => {
                     bookData.map(
                         (bookObj) => {
                             return (
-                                <div>
+                                <div className="search__Results">
                                     <p key={bookObj.id} id={bookObj.id}>{bookObj.volumeInfo.title} by {bookObj.volumeInfo.authors[0]}</p><button className="bookDetails__Button" onClick={
                                         (event) => {
                                             saveBook(bookObj)
